@@ -17,7 +17,7 @@
         public MainViewModel()
         {
             Notes = new ObservableCollection<Note> { new Note("TestNote", DateTime.Now)};
-            Notes.Add(new Note("YoloswagthatwasEasy You deadly Man, This shit is killing me", DateTime.Now));
+            Notes.Add(new Note("ASdkasdflöasdfas#dfasdfsadfnasdfopow", DateTime.Now));
             AddNoteCmd = new RelayCommand(AddNewNote);
             MaxNotes = 5;
 
