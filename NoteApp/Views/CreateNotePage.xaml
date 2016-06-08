@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="NoteApp.Views.CreateNotePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NoteApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button 
+                HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch"
+                    Content="Cancle"
+                    Click="onCancleNote"/>
+        <Button 
+                Grid.Column="1"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch"
+                Content="Submit"
+                Click="onSubmitNote"/>
+        <TextBlock 
+                Grid.Row="1" Grid.ColumnSpan="2"
+                x:Name="NewDateTimeTxt"
+                Text="{Binding NewDateTime, Mode=OneWay}"/>
+
+        <TextBox Grid.Row="2"
+               Grid.ColumnSpan="2"
+                    TextWrapping="Wrap" 
+                x:Name="NewTextTxt"
+                Text="{Binding NewText, Mode=TwoWay}"/>
+    </Grid>
+</Page>
