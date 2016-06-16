@@ -29,31 +29,12 @@ namespace NoteApp.Views
         {
             this.InitializeComponent();
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
-            AddNotesToList();
-            
-
-        }
-
-        private void AddNotesToList()
-        {
             var notes = ViewModel.Notes;
-            if (ViewModel.IsAscending)
-            {               
-                for (int i = 1; i <= ViewModel.MaxNotes && i <= notes.Count; i++)
-                {
-                    ListViewNotes.Items.Add(notes[notes.Count - i]);
-                }
-            }else
+            for (int i = 1; i <= ViewModel.MaxNotes && i <= notes.Count; i++)
             {
-                int j = 1;
-                for (int i = notes.Count; j <= ViewModel.MaxNotes && i > 0; i--)
-                {
-                    ListViewNotes.Items.Add(notes[notes.Count - i]);
-                }
+                ListViewNotes.Items.Add(notes[notes.Count - i]);
             }
 
-
-            
         }
         
         private void App_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)

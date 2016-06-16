@@ -5,14 +5,12 @@ namespace NoteApp.Models
     using GalaSoft.MvvmLight;
     public class Note : ObservableObject
     {
-        public Note(string title, string text, DateTime date)
+        public Note(string text, DateTime time)
         {
-            Title = title;
             Text = text;
-            Date = date;
+            Time = time;
         }
-        public string Title { get; set; }
         public string Text { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Time { get; set; }
     }
 }

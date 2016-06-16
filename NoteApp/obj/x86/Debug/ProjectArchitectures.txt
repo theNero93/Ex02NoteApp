@@ -1,1 +1,0 @@
-D:\Studium\Projects\VisualStudio\NoteApp\NoteApp\NoteApp.csproj;x86
