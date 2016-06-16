@@ -29,9 +29,12 @@ namespace NoteApp.Views
         {
             this.InitializeComponent();
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+
             
     }
         public MainViewModel ViewModel => DataContext as MainViewModel;
+
+        
 
         private void App_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {

@@ -5,6 +5,7 @@
     xmlns:local="using:NoteApp.Views"
     xmlns:viewModels="using:NoteApp.ViewModels"
     xmlns:models="using:NoteApp.Models"
+    xmlns:converters="using:NoteApp.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
@@ -12,12 +13,23 @@
 
     <Page.Resources>
         <DataTemplate x:Key="NotesTemplate" x:DataType="models:Note">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Text}" TextWrapping="Wrap"  />
-                <TextBlock Grid.Column="1"
-                           Text="{Binding Time}" TextWrapping="Wrap"
-                           TextAlignment="Right" />
-                
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock 
+                        Text="{x:Bind Title}" 
+                        TextWrapping="Wrap"
+                        FontSize="24"/>
+                    <TextBlock
+                        Grid.Row="1"
+                        Text="{x:Bind Date}" 
+                        TextWrapping="Wrap"
+                        TextAlignment="Right" />
+                </Grid>
+                <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap"  />
             </StackPanel>
         </DataTemplate>
         <Style TargetType="ListViewItem" x:Key="StretchStyle">
@@ -30,7 +42,9 @@
         <ListView x:Name="ListViewNotes"
                   Background="AntiqueWhite"
                   ItemTemplate="{StaticResource NotesTemplate}"
-                  ItemContainerStyle="{StaticResource StretchStyle}">
+                  ItemContainerStyle="{StaticResource StretchStyle}"
+                  SelectedItem="{x:Bind ViewModel.SelectedNote, Mode=TwoWay, Converter={StaticResource ObjectConverter}}"
+                  Tapped="{x:Bind ViewModel.NavigateToDetails}">
             
         </ListView>
     </Grid>

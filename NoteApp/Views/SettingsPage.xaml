@@ -5,7 +5,7 @@
     xmlns:local="using:NoteApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
+    DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -13,14 +13,20 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Slider x:Name="slider" HorizontalAlignment="Stretch" Maximum="20" Value="{Binding MaxNotes, Mode=TwoWay}"/>
         <TextBlock Grid.Row="1"
                    Text="{x:Bind slider.Value, Mode=OneWay}">
-
         </TextBlock>
-        <Button 
+        <ToggleSwitch
             Grid.Row="2"
+            Header="Sort"
+            OnContent="Ascending"
+            OffContent="Descending"
+            IsOn="{x:Bind ViewModel.IsAscending, Mode=TwoWay}"/>
+        <Button 
+            Grid.Row="3"
             HorizontalAlignment="Stretch" 
             VerticalAlignment="Stretch"
             Content="Submit"

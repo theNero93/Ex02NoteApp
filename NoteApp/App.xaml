@@ -5,9 +5,18 @@
     xmlns:local="using:NoteApp"
     xmlns:viewModels="using:NoteApp.ViewModels"
     xmlns:models="using:NoteApp.Models"
+    xmlns:converter="using:NoteApp.Converters"
     RequestedTheme="Light">
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="Locator"/>
+
+        <Style x:Key="StretchedItemStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+        <converter:ObjectConverter x:Key="ObjectConverter" />
+
     </Application.Resources>
+
+    
 
 </Application>

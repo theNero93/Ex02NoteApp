@@ -4,10 +4,59 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:NoteApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:viewModels="using:NoteApp.ViewModels"
+    xmlns:models="using:NoteApp.Models"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
+
+    <Page.Resources>
+        <DataTemplate x:Key="NotesTemplate" x:DataType="models:Note">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock 
+                        Text="{x:Bind Title}" 
+                        TextWrapping="Wrap"
+                        FontSize="24"/>
+                    <TextBlock
+                        Grid.Row="1"
+                        Text="{x:Bind Date}" 
+                        TextWrapping="Wrap"
+                        TextAlignment="Right" />
+                </Grid>
+                <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap"  />
+
+
+            </StackPanel>
+        </DataTemplate>
+        <Style TargetType="ListViewItem" x:Key="StretchStyle">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="SearchPage" FontSize="24"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox 
+            VerticalAlignment="Stretch"
+            Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView 
+            Grid.Row="1"
+            x:Name="SearchNoteList"
+            Background="AntiqueWhite"
+            ItemsSource="{Binding SearchedNotes, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            ItemTemplate="{StaticResource NotesTemplate}"
+            ItemContainerStyle="{StaticResource StretchStyle}">
+        </ListView>
+
     </Grid>
 </Page>
